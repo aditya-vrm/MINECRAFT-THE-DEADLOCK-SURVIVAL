@@ -42,21 +42,72 @@ export const valueColorClass = (val, max) => {
 /** Generate resource labels (A, B, C, ...) */
 export const resourceLabel = (idx) => String.fromCharCode(65 + idx);
 
-/** Play a click sound using Web Audio API */
+/** Play authentic Minecraft wooden button click sound using Web Audio API */
+let sharedAudioCtx = null;
+const getAudioContext = () => {
+  if (!sharedAudioCtx) {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (AudioCtx) sharedAudioCtx = new AudioCtx();
+  }
+  if (sharedAudioCtx && sharedAudioCtx.state === 'suspended') {
+    sharedAudioCtx.resume();
+  }
+  return sharedAudioCtx;
+};
+
 export const playClickSound = () => {
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = ctx.createOscillator();
-    const gainNode = ctx.createGain();
-    oscillator.connect(gainNode);
-    gainNode.connect(ctx.destination);
-    oscillator.type = 'square';
-    oscillator.frequency.setValueAtTime(440, ctx.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.05);
-    gainNode.gain.setValueAtTime(0.15, ctx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
-    oscillator.start(ctx.currentTime);
-    oscillator.stop(ctx.currentTime + 0.08);
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    // 1. Sharp high-frequency mechanical snap / transient
+    const snapOsc = ctx.createOscillator();
+    const snapGain = ctx.createGain();
+    snapOsc.type = 'triangle';
+    snapOsc.frequency.setValueAtTime(1250, now);
+    snapOsc.frequency.exponentialRampToValueAtTime(320, now + 0.03);
+    snapGain.gain.setValueAtTime(0.35, now);
+    snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+    snapOsc.connect(snapGain);
+    snapGain.connect(ctx.destination);
+    snapOsc.start(now);
+    snapOsc.stop(now + 0.03);
+
+    // 2. Wooden body resonance thud
+    const woodOsc = ctx.createOscillator();
+    const woodGain = ctx.createGain();
+    woodOsc.type = 'sine';
+    woodOsc.frequency.setValueAtTime(380, now);
+    woodOsc.frequency.exponentialRampToValueAtTime(110, now + 0.045);
+    woodGain.gain.setValueAtTime(0.28, now);
+    woodGain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+    woodOsc.connect(woodGain);
+    woodGain.connect(ctx.destination);
+    woodOsc.start(now);
+    woodOsc.stop(now + 0.045);
+
+    // 3. Crisp mechanical button noise texture
+    const noiseSamples = Math.floor(ctx.sampleRate * 0.015);
+    const noiseBuffer = ctx.createBuffer(1, noiseSamples, ctx.sampleRate);
+    const data = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < noiseSamples; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (noiseSamples * 0.35));
+    }
+    const noiseSrc = ctx.createBufferSource();
+    noiseSrc.buffer = noiseBuffer;
+    const noiseFilter = ctx.createBiquadFilter();
+    noiseFilter.type = 'bandpass';
+    noiseFilter.frequency.value = 1800;
+    noiseFilter.Q.value = 2.5;
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.22, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+    noiseSrc.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    noiseSrc.start(now);
+    noiseSrc.stop(now + 0.015);
   } catch (_) {}
 };
 
