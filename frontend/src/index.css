@@ -1,0 +1,571 @@
+/* ============================================================
+   MINECRAFT: THE DEADLOCK SURVIVAL — Global Design System
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+:root {
+  /* Minecraft Color Palette */
+  --mc-grass: #5D9C40;
+  --mc-dirt: #8B6914;
+  --mc-dirt-dark: #6B4F10;
+  --mc-stone: #808080;
+  --mc-stone-light: #A0A0A0;
+  --mc-wood: #9B7A3C;
+  --mc-diamond: #4ADCDE;
+  --mc-diamond-dark: #1BA8B4;
+  --mc-gold: #FFCC00;
+  --mc-gold-dark: #B89900;
+  --mc-iron: #D4D4D4;
+  --mc-emerald: #17DD62;
+  --mc-redstone: #E74040;
+  --mc-redstone-dark: #B52020;
+  --mc-nether: #CC3300;
+  --mc-lava: #FF6600;
+  --mc-obsidian: #16080D;
+  --mc-end: #1A0A2E;
+  --mc-end-purple: #7C31FF;
+  --mc-sculk: #0B293A;
+  --mc-sculk-glow: #00E5FF;
+
+  /* UI Colors */
+  --mc-btn-bg: #8B8B8B;
+  --mc-btn-border-top: #FFFFFF;
+  --mc-btn-border-bottom: #555555;
+  --mc-btn-text: #DCDCDC;
+  --mc-btn-hover-bg: #9C9C9C;
+  --mc-btn-hover-text: #FFFF55;
+  --mc-btn-shadow: rgba(0,0,0,0.5);
+
+  /* Dark UI panel */
+  --mc-panel-bg: rgba(0, 0, 0, 0.75);
+  --mc-panel-border: #555555;
+  --mc-panel-border-light: #888888;
+
+  /* Inventory slot */
+  --mc-slot-bg: #8B8B8B;
+  --mc-slot-border-top: #373737;
+  --mc-slot-border-bottom: #FFFFFF;
+
+  /* Typography */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-vt: 'VT323', monospace;
+
+  /* Safe/Unsafe colors */
+  --color-safe: #17DD62;
+  --color-unsafe: #E74040;
+  --color-warning: #FFCC00;
+  --color-info: #4ADCDE;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-vt);
+  background: #000;
+  color: white;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+/* ── Minecraft Button ──────────────────────────────────────── */
+.mc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 20px;
+  min-width: 200px;
+  height: 40px;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--mc-btn-text);
+  background: var(--mc-btn-bg);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  transition: background 0.05s, filter 0.05s;
+  image-rendering: pixelated;
+  /* Pixel-art border: inner top/left highlight, bottom/right shadow */
+  box-shadow:
+    inset -2px -4px 0 #555555,
+    inset 2px 2px 0 #FFFFFF44,
+    0 4px 0 #222222;
+}
+
+.mc-btn:hover {
+  background: var(--mc-btn-hover-bg);
+  color: var(--mc-btn-hover-text);
+  filter: brightness(1.15);
+}
+
+.mc-btn:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset -2px -2px 0 #555555,
+    inset 2px 2px 0 #FFFFFF44,
+    0 2px 0 #222222;
+}
+
+.mc-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mc-btn.mc-btn-lg {
+  min-width: 300px;
+  height: 50px;
+  font-size: 12px;
+  padding: 10px 28px;
+}
+
+.mc-btn.mc-btn-sm {
+  min-width: 120px;
+  height: 32px;
+  font-size: 8px;
+  padding: 6px 14px;
+}
+
+.mc-btn.mc-btn-green {
+  background: #4A7D26;
+  box-shadow: inset -2px -4px 0 #2A4D16, inset 2px 2px 0 #5E9E3244, 0 4px 0 #1A2D0A;
+}
+.mc-btn.mc-btn-green:hover { background: #5A9D36; color: #FFFF55; }
+
+.mc-btn.mc-btn-red {
+  background: #7D2626;
+  box-shadow: inset -2px -4px 0 #4D1616, inset 2px 2px 0 #9E4444, 0 4px 0 #2D0A0A;
+}
+.mc-btn.mc-btn-red:hover { background: #9D3636; color: #FFFF55; }
+
+.mc-btn.mc-btn-diamond {
+  background: #1B7B7E;
+  box-shadow: inset -2px -4px 0 #0B4B4E, inset 2px 2px 0 #4ADCDE44, 0 4px 0 #052526;
+}
+.mc-btn.mc-btn-diamond:hover { background: #2B9B9E; color: #FFFF55; }
+
+/* ── Minecraft Panel ──────────────────────────────────────── */
+.mc-panel {
+  background: var(--mc-panel-bg);
+  border: 2px solid #555;
+  box-shadow:
+    inset 1px 1px 0 #888,
+    inset -1px -1px 0 #222,
+    0 8px 32px rgba(0,0,0,0.8);
+  padding: 16px;
+}
+
+/* ── Inventory Slot ───────────────────────────────────────── */
+.mc-slot {
+  width: 36px;
+  height: 36px;
+  background: var(--mc-slot-bg);
+  box-shadow: inset -2px -2px 0 #FFFFFF, inset 2px 2px 0 #373737;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  cursor: pointer;
+  position: relative;
+}
+.mc-slot:hover {
+  background: #A0A0A0;
+}
+
+/* ── Minecraft Input ──────────────────────────────────────── */
+.mc-input {
+  background: #000;
+  border: 2px solid #555;
+  box-shadow: inset 1px 1px 0 #888, inset -1px -1px 0 #222;
+  color: white;
+  font-family: var(--font-vt);
+  font-size: 18px;
+  padding: 6px 10px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.mc-input:focus {
+  border-color: var(--mc-diamond);
+  box-shadow: inset 1px 1px 0 #888, inset -1px -1px 0 #222, 0 0 8px var(--mc-diamond)44;
+}
+.mc-input::-webkit-inner-spin-button,
+.mc-input::-webkit-outer-spin-button { opacity: 1; }
+
+/* ── Typography ───────────────────────────────────────────── */
+.mc-title {
+  font-family: var(--font-pixel);
+  color: white;
+  text-shadow: 3px 3px 0 #333, -1px -1px 0 #555;
+}
+
+.mc-subtitle {
+  font-family: var(--font-vt);
+  font-size: 22px;
+  color: #AAAAAA;
+}
+
+.mc-label {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: #AAAAAA;
+  letter-spacing: 0.5px;
+}
+
+.mc-text {
+  font-family: var(--font-vt);
+  font-size: 20px;
+  line-height: 1.5;
+  color: #DDDDDD;
+}
+
+.mc-gold-text {
+  color: var(--mc-gold);
+  text-shadow: 2px 2px 0 #B89900;
+}
+
+.mc-green-text { color: var(--color-safe); }
+.mc-red-text { color: var(--color-unsafe); }
+.mc-diamond-text { color: var(--mc-diamond); }
+.mc-purple-text { color: var(--mc-end-purple); }
+
+/* ── Loading Screen ───────────────────────────────────────── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.dirt-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-conic-gradient(
+      #6B4F10 0% 25%,
+      #7A5C1A 0% 50%,
+      #8B6914 0% 75%,
+      #7A5C1A 0% 100%
+    );
+  background-size: 64px 64px;
+  opacity: 0.9;
+  image-rendering: pixelated;
+}
+
+.loading-bar-container {
+  width: 320px;
+  height: 32px;
+  background: #000;
+  border: 3px solid #555;
+  box-shadow: inset 1px 1px 0 #888, inset -1px -1px 0 #222;
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2ECC40, #3DDC50);
+  transition: width 0.05s linear;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.3);
+}
+
+.loading-text {
+  font-family: var(--font-vt);
+  font-size: 22px;
+  color: white;
+  text-align: center;
+}
+
+/* ── Dirt Texture SVG pattern ──────────────────────────────── */
+.dirt-texture {
+  background-color: #7A5C1A;
+  background-image:
+    radial-gradient(ellipse 4px 4px at 10px 10px, #8B6914 0%, transparent 60%),
+    radial-gradient(ellipse 3px 3px at 30px 20px, #6B4F10 0%, transparent 60%),
+    radial-gradient(ellipse 5px 5px at 50px 5px, #9B7A24 0%, transparent 60%),
+    radial-gradient(ellipse 4px 4px at 20px 40px, #5A4210 0%, transparent 60%);
+  background-size: 64px 64px;
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-12px) rotate(-6deg); }
+}
+
+@keyframes pan-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px currentColor; }
+  50% { box-shadow: 0 0 24px currentColor; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes petal-fall {
+  0% { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) translateX(60px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes dragon-fly {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(30px) translateY(-20px); }
+  75% { transform: translateX(-30px) translateY(10px); }
+}
+
+@keyframes lava-fall {
+  0% { transform: translateY(-100%); opacity: 0.8; }
+  100% { transform: translateY(200%); opacity: 0.4; }
+}
+
+@keyframes ghast-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -15px) scale(1.05); }
+  66% { transform: translate(-15px, 10px) scale(0.95); }
+}
+
+@keyframes sculk-pulse {
+  0%, 100% { opacity: 0.6; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.5) drop-shadow(0 0 8px #00E5FF); }
+}
+
+@keyframes warden-emerge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { border-right-color: transparent; }
+  50% { border-right-color: white; }
+}
+
+@keyframes safe-flash {
+  0% { background: rgba(23, 221, 98, 0.3); }
+  50% { background: rgba(23, 221, 98, 0.1); }
+  100% { background: rgba(23, 221, 98, 0.3); }
+}
+
+@keyframes unsafe-flash {
+  0% { background: rgba(231, 64, 64, 0.3); }
+  50% { background: rgba(231, 64, 64, 0.1); }
+  100% { background: rgba(231, 64, 64, 0.3); }
+}
+
+@keyframes step-reveal {
+  from { opacity: 0; transform: scaleY(0); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #222;
+}
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border: 1px solid #333;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* ── Utility Classes ──────────────────────────────────────── */
+.fade-in { animation: fade-in 0.4s ease forwards; }
+.slide-in { animation: slide-in 0.4s ease forwards; }
+.float-anim { animation: float 3s ease-in-out infinite; }
+.pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+.pixel-border {
+  box-shadow:
+    inset -2px -4px 0 #555555,
+    inset 2px 2px 0 #FFFFFF44,
+    0 4px 0 #222222;
+}
+
+.safe-state { animation: safe-flash 2s ease-in-out infinite; border: 1px solid var(--color-safe); }
+.unsafe-state { animation: unsafe-flash 2s ease-in-out infinite; border: 1px solid var(--color-unsafe); }
+
+/* ── Matrices Table ───────────────────────────────────────── */
+.mc-matrix-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: var(--font-vt);
+  font-size: 18px;
+}
+.mc-matrix-table th {
+  background: #333;
+  color: var(--mc-diamond);
+  padding: 6px 10px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  border: 1px solid #555;
+  text-align: center;
+}
+.mc-matrix-table td {
+  padding: 6px 10px;
+  border: 1px solid #444;
+  text-align: center;
+  background: #1A1A1A;
+  color: #DDD;
+}
+.mc-matrix-table tr:hover td {
+  background: #252525;
+}
+.mc-matrix-table td input {
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: var(--font-vt);
+  font-size: 18px;
+  width: 50px;
+  text-align: center;
+  outline: none;
+}
+.mc-matrix-table td input:focus {
+  background: rgba(74, 220, 222, 0.2);
+}
+
+/* ── Progress Steps ───────────────────────────────────────── */
+.step-card {
+  background: #1A1A1A;
+  border: 1px solid #444;
+  border-left: 4px solid var(--mc-diamond);
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  animation: step-reveal 0.3s ease forwards;
+  transform-origin: top;
+  font-family: var(--font-vt);
+  font-size: 17px;
+}
+
+/* ── Screen wrappers ──────────────────────────────────────── */
+.full-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.screen-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0,0,0,0.45);
+}
+
+/* ── Slide navigation ─────────────────────────────────────── */
+.slide-nav-btn {
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  font-family: var(--font-pixel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.7);
+  border: 2px solid #555;
+  color: white;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.slide-nav-btn:hover {
+  background: rgba(74,220,222,0.2);
+  border-color: var(--mc-diamond);
+  color: var(--mc-diamond);
+}
+
+/* ── Cherry petal ─────────────────────────────────────────── */
+.petal {
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  background: #FFB7C5;
+  border-radius: 50% 0 50% 0;
+  pointer-events: none;
+  animation: petal-fall linear infinite;
+}
+
+/* ── Tooltip ──────────────────────────────────────────────── */
+.mc-tooltip {
+  position: absolute;
+  background: rgba(16, 0, 16, 0.94);
+  border: 1px solid #5E00FF;
+  border-top: 2px solid #A000A0;
+  padding: 6px 10px;
+  font-family: var(--font-vt);
+  font-size: 16px;
+  color: white;
+  z-index: 100;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 #5E00FF;
+}
+
+/* ── Badge ────────────────────────────────────────────────── */
+.mc-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  border: 1px solid;
+}
+.mc-badge-safe { color: var(--color-safe); border-color: var(--color-safe); background: rgba(23,221,98,0.1); }
+.mc-badge-unsafe { color: var(--color-unsafe); border-color: var(--color-unsafe); background: rgba(231,64,64,0.1); }
+.mc-badge-warn { color: var(--color-warning); border-color: var(--color-warning); background: rgba(255,204,0,0.1); }
+.mc-badge-info { color: var(--mc-diamond); border-color: var(--mc-diamond); background: rgba(74,220,222,0.1); }
