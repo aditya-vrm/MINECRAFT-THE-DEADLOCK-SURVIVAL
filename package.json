@@ -1,0 +1,23 @@
+{
+  "name": "minecraft-deadlock-survival",
+  "version": "1.0.0",
+  "description": "MINECRAFT - THE DEADLOCK SURVIVAL: Fullstack Banker's Algorithm Web App",
+  "private": true,
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "test:backend": "cd backend && npm test",
+    "build:frontend": "cd frontend && npm run build",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "minecraft",
+    "deadlock",
+    "bankers-algorithm",
+    "operating-systems",
+    "react",
+    "express"
+  ],
+  "author": "Aditya Verma",
+  "license": "MIT"
+}
