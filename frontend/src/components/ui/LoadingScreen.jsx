@@ -29,10 +29,10 @@ export default function LoadingScreen({ message = 'Loading world...', onComplete
       <div className={styles.dirtBg} aria-hidden="true" />
 
       <div className={styles.content}>
-        {/* Mojang-style title */}
+        {/* Title */}
         <div className={styles.logo}>
-          <span className={styles.logoMC}>MINECRAFT</span>
-          <span className={styles.logoSub}>THE DEADLOCK SURVIVAL</span>
+          <span className={styles.logoMC}>BANKER&apos;S ALGORITHM</span>
+          <span className={styles.logoSub}>&amp; DEADLOCK SIMULATOR</span>
         </div>
 
         {/* Loading label */}

@@ -80,16 +80,30 @@
 
 .logoMC {
   font-family: 'Press Start 2P', monospace;
-  font-size: clamp(32px, 6vw, 72px);
+  font-size: clamp(20px, 4vw, 44px);
   color: white;
   text-shadow:
     4px 4px 0 #2a2a2a,
     -2px 2px 0 #444,
     2px -2px 0 #555,
-    0 0 40px rgba(255, 200, 0, 0.3);
-  letter-spacing: 6px;
-  line-height: 1;
+    0 0 35px rgba(255, 200, 0, 0.35);
+  letter-spacing: 3px;
+  line-height: 1.3;
   margin: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.logoSub {
+  font-size: clamp(16px, 3.2vw, 36px);
+  color: #FFAA00;
+  text-shadow:
+    3px 3px 0 #2a2a2a,
+    -2px 2px 0 #333,
+    0 0 25px rgba(255, 170, 0, 0.45);
 }
 
 .splash {
@@ -102,8 +116,8 @@
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0) rotate(-3deg) scale(1); }
-  50% { transform: translateY(-10px) rotate(-3deg) scale(1.04); }
+  0%, 100% { transform: translateY(0) rotate(-2deg) scale(1); }
+  50% { transform: translateY(-8px) rotate(-2deg) scale(1.03); }
 }
 
 .edition {
@@ -137,6 +151,20 @@
   display: flex !important;
   flex-direction: column !important;
   gap: 2px !important;
+}
+
+.installBtn {
+  margin-top: 6px;
+  font-size: 10px !important;
+  height: 38px !important;
+  width: 260px !important;
+  background: #2D4A1C !important;
+  border-color: #55FF55 !important;
+  color: #AAFFAA !important;
+}
+.installBtn:hover {
+  background: #3B6125 !important;
+  color: #FFFFFF !important;
 }
 
 .btnHint {

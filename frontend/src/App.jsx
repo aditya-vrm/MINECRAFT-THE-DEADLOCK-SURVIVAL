@@ -18,9 +18,9 @@ const SCREEN = {
 };
 
 const LOADING_MESSAGES = {
-  story: 'Generating terrain...',
-  survival: 'Loading crafting table...',
-  thankyou: 'Growing cherry blossoms...',
+  story: 'Loading presentation slides...',
+  survival: 'Initializing Banker\'s Algorithm lab...',
+  thankyou: 'Opening acknowledgments...',
 };
 
 export default function App() {
