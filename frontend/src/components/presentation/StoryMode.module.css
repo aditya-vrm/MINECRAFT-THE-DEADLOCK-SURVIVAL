@@ -1,0 +1,527 @@
+/* StoryMode.module.css */
+
+.storyMode {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.6s ease;
+  animation: subtlePan 20s ease-in-out infinite alternate;
+}
+
+@keyframes subtlePan {
+  0% { transform: scale(1.08) translate(-1%, -1%); }
+  100% { transform: scale(1.08) translate(1%, 1%); }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  transition: background 0.6s ease;
+}
+
+/* ── Slide ──────────────────────────────────────────── */
+.slide {
+  position: absolute;
+  inset: 0;
+  top: 0;
+  bottom: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 20px;
+  animation: slideIn 0.4s ease forwards;
+  overflow-y: auto;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.slideInner {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  background: rgba(0, 0, 0, 0.72);
+  border: 2px solid #555;
+  box-shadow: inset 1px 1px 0 #888, inset -1px -1px 0 #222, 0 8px 40px rgba(0,0,0,0.8);
+  padding: 32px 40px;
+  text-align: center;
+}
+
+/* ── Slide 1 — Title ────────────────────────────────── */
+.uniTag {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: #FFCC00;
+  background: rgba(255, 204, 0, 0.12);
+  border: 1px solid #FFCC00;
+  padding: 4px 16px;
+}
+
+.slideTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(14px, 2.5vw, 28px);
+  color: white;
+  text-shadow: 3px 3px 0 #333;
+  line-height: 1.4;
+}
+
+.slideSubtitle {
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  color: #AAAAAA;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.personCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid #444;
+  padding: 12px 16px;
+}
+
+.personAvatar {
+  font-size: 36px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #333;
+  border: 1px solid #555;
+}
+
+.personInfo { text-align: left; }
+
+.personName {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #FFCC00;
+}
+
+.personRole {
+  font-family: 'VT323', monospace;
+  font-size: 17px;
+  color: #AAAAAA;
+}
+
+.personSub {
+  font-family: 'VT323', monospace;
+  font-size: 15px;
+  color: #666;
+}
+
+.subjectBadge {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: #4ADCDE;
+  border: 1px solid #4ADCDE;
+  padding: 4px 12px;
+  background: rgba(74,220,222,0.08);
+}
+
+/* ── Slide chip ─────────────────────────────────────── */
+.slideChip {
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  color: #AAA;
+  padding: 3px 12px;
+  border: 1px solid #555;
+}
+
+/* ── Analogy box ────────────────────────────────────── */
+.analogyBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255,204,0,0.08);
+  border: 1px solid #FFCC00;
+  padding: 14px 18px;
+  text-align: left;
+  max-width: 760px;
+}
+.analogyIcon { font-size: 32px; }
+.analogyText {
+  font-family: 'VT323', monospace;
+  font-size: 19px;
+  color: #DDD;
+  line-height: 1.5;
+}
+
+/* ── Conditions grid ────────────────────────────────── */
+.conditionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.conditionCard {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #444;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.conditionIcon { font-size: 28px; }
+.conditionTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #FFCC00;
+}
+.conditionDesc {
+  font-family: 'VT323', monospace;
+  font-size: 17px;
+  color: #AAAAAA;
+  line-height: 1.4;
+}
+
+.warningBox {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: #FF9944;
+  background: rgba(255,153,68,0.1);
+  border: 1px solid #FF9944;
+  padding: 8px 16px;
+  max-width: 700px;
+}
+
+/* ── Strategy cards ─────────────────────────────────── */
+.strategyRow {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.stratCard {
+  flex: 1;
+  min-width: 160px;
+  max-width: 220px;
+  border: 1px solid;
+  background: rgba(255,255,255,0.05);
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.stratDesc {
+  font-family: 'VT323', monospace;
+  font-size: 17px;
+  color: #AAAAAA;
+  line-height: 1.4;
+}
+
+/* ── Formula box ────────────────────────────────────── */
+.formulaBox {
+  background: rgba(0,0,0,0.5);
+  border: 2px solid #555;
+  padding: 14px 24px;
+  text-align: center;
+}
+.formulaTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #888;
+  margin-bottom: 8px;
+}
+.formula {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+.formulaNote {
+  font-family: 'VT323', monospace;
+  font-size: 17px;
+  color: #888;
+  margin-top: 6px;
+}
+
+/* ── Matrix display ─────────────────────────────────── */
+.matrixSection {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.matrixGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+.matrixTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+}
+
+/* ── Safety steps ───────────────────────────────────── */
+.algoSteps { width: 100%; }
+.algoInit {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  font-family: 'VT323', monospace;
+  font-size: 19px;
+  color: #DDD;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #444;
+  padding: 8px 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.algoLabel {
+  color: #888;
+  margin-right: 4px;
+}
+
+.stepsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,0,0,0.4);
+  border-left: 3px solid #4ADCDE;
+  padding: 8px 12px;
+  font-family: 'VT323', monospace;
+  font-size: 17px;
+  animation: stepReveal 0.3s ease forwards;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+  flex-wrap: wrap;
+}
+@keyframes stepReveal {
+  to { opacity: 1; }
+}
+.stepProcess {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #FFCC00;
+  min-width: 30px;
+}
+.stepDetail { color: #AAA; }
+.stepArrow { color: #555; }
+.stepResult { color: #17DD62; }
+
+.safeSeq {
+  margin-top: 10px;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: #17DD62;
+  background: rgba(23,221,98,0.1);
+  border: 1px solid #17DD62;
+  padding: 8px 16px;
+}
+.safeSeq span { font-family: 'Press Start 2P', monospace; font-size: 10px; }
+
+/* ── Request protocol ───────────────────────────────── */
+.requestProtocol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.ruleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid #333;
+  padding: 10px 14px;
+}
+.ruleNum {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  border: 2px solid;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ruleContent { text-align: left; }
+.ruleTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  margin-bottom: 3px;
+}
+.ruleDetail {
+  font-family: 'VT323', monospace;
+  font-size: 17px;
+  color: #AAAAAA;
+}
+
+/* ── Interactive box ────────────────────────────────── */
+.interactiveBox {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid #FFCC00;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+.interactiveQ {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: white;
+  line-height: 1.5;
+  text-align: center;
+}
+.decisionBtns {
+  display: flex;
+  gap: 16px;
+}
+.verdict {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  line-height: 1.5;
+  padding: 10px 16px;
+  border: 1px solid;
+  text-align: center;
+}
+.verdictSafe { color: #17DD62; border-color: #17DD62; background: rgba(23,221,98,0.1); }
+.verdictUnsafe { color: #E74040; border-color: #E74040; background: rgba(231,64,64,0.1); }
+
+/* ── Slide 6 — End ──────────────────────────────────── */
+.endContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+}
+.endBadge {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: var(--mc-end-purple, #7C31FF);
+  border: 1px solid var(--mc-end-purple, #7C31FF);
+  padding: 4px 16px;
+  letter-spacing: 4px;
+}
+.endTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(28px, 6vw, 64px);
+  color: white;
+  text-shadow: 4px 4px 0 #333, 0 0 60px rgba(124, 49, 255, 0.6);
+  animation: endPulse 2s ease-in-out infinite;
+}
+@keyframes endPulse {
+  0%, 100% { text-shadow: 4px 4px 0 #333, 0 0 30px rgba(124, 49, 255, 0.4); }
+  50% { text-shadow: 4px 4px 0 #333, 0 0 80px rgba(124, 49, 255, 0.8); }
+}
+.endVerdict {
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  color: #DDD;
+  max-width: 650px;
+  line-height: 1.6;
+  text-align: center;
+}
+.endChips {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 14px;
+}
+
+/* ── Navigation bar ─────────────────────────────────── */
+.navBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 62px;
+  background: rgba(0, 0, 0, 0.88);
+  border-top: 2px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 10;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
+}
+
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navBtn {
+  width: 44px;
+  height: 36px;
+  background: #555;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  box-shadow: inset -2px -3px 0 #333, inset 1px 1px 0 #888;
+  transition: background 0.1s;
+}
+.navBtn:hover { background: #777; }
+.navDisabled { opacity: 0.3; cursor: default; }
+
+.dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #444;
+  border: 1px solid #666;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0;
+}
+.dotActive { background: #4ADCDE; border-color: #4ADCDE; }
+.dot:hover:not(.dotActive) { background: #777; }
+
+.counter {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #888;
+  min-width: 50px;
+  text-align: right;
+}

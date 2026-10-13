@@ -1,0 +1,187 @@
+/* MainMenu.module.css */
+
+.menu {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bgPan {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  background-image: url('/minecraft_sunset.jpg');
+  background-size: cover;
+  background-position: center;
+  animation: pan 25s ease-in-out infinite alternate;
+  image-rendering: auto;
+}
+
+@keyframes pan {
+  0% { transform: scale(1.1) translateX(-3%) translateY(-2%); }
+  50% { transform: scale(1.15) translateX(3%) translateY(2%); }
+  100% { transform: scale(1.1) translateX(-1%) translateY(-1%); }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.5) 40%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 220, 80, 0.7);
+  border-radius: 0;
+  animation: twinkle ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.1; transform: scale(0.8); }
+  100% { opacity: 0.9; transform: scale(1.2); }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 60px;
+}
+
+/* ── Logo group ────────────────────────────────────────── */
+.logoGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.logoGroup.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logoMC {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(32px, 6vw, 72px);
+  color: white;
+  text-shadow:
+    4px 4px 0 #2a2a2a,
+    -2px 2px 0 #444,
+    2px -2px 0 #555,
+    0 0 40px rgba(255, 200, 0, 0.3);
+  letter-spacing: 6px;
+  line-height: 1;
+  margin: 0;
+}
+
+.splash {
+  font-family: 'VT323', monospace;
+  font-size: clamp(18px, 3vw, 32px);
+  color: #FFFF55;
+  text-shadow: 2px 2px 0 #B8B800, 0 0 20px rgba(255,255,85,0.5);
+  animation: bounce 1.5s ease-in-out infinite;
+  letter-spacing: 2px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(-3deg) scale(1); }
+  50% { transform: translateY(-10px) rotate(-3deg) scale(1.04); }
+}
+
+.edition {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: #AAAAAA;
+  letter-spacing: 1px;
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
+.btnGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+}
+.btnGroup.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menuBtn {
+  position: relative;
+  width: 340px !important;
+  min-width: 340px !important;
+  height: 54px !important;
+  font-size: 11px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.btnHint {
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  color: #CCCCCC;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+.menuBtn:hover .btnHint {
+  color: #FFFF88;
+}
+
+.btnCherry {
+  background: #7B3255 !important;
+  box-shadow: inset -2px -4px 0 #4B1E35, inset 2px 2px 0 #9B5275AA, 0 4px 0 #2B0E1A !important;
+}
+.btnCherry:hover {
+  background: #9B4270 !important;
+  color: #FFAACC !important;
+}
+
+/* ── Footer ───────────────────────────────────────────── */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.footerText {
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+/* ── Version ──────────────────────────────────────────── */
+.version {
+  position: fixed;
+  bottom: 12px;
+  right: 16px;
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  color: #555;
+  z-index: 3;
+}
