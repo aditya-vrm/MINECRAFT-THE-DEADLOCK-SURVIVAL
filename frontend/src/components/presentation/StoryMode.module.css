@@ -67,9 +67,24 @@
   font-family: 'VT323', monospace;
   font-size: 20px;
   color: #FFCC00;
-  background: rgba(255, 204, 0, 0.12);
-  border: 1px solid #FFCC00;
-  padding: 4px 16px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid #FFCC00;
+  box-shadow: inset 2px 2px 0 rgba(255, 204, 0, 0.3), inset -2px -2px 0 rgba(0, 0, 0, 0.5);
+  padding: 6px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.collegeLogo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  background: #ffffff;
+  border: 2px solid #333333;
+  box-shadow: inset 1px 1px 0 #666, inset -1px -1px 0 #111;
+  padding: 2px;
+  border-radius: 2px;
 }
 
 .slideTitle {
@@ -91,7 +106,7 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  max-width: 840px;
+  max-width: 860px;
 }
 
 .studentsRow {
@@ -110,30 +125,61 @@
 .personCard {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid #555;
-  padding: 12px 14px;
+  gap: 14px;
+  background: rgba(20, 20, 20, 0.85);
+  border: 2px solid #4a4a4a;
+  box-shadow:
+    inset 2px 2px 0 #666666,
+    inset -2px -2px 0 #1a1a1a,
+    0 4px 10px rgba(0, 0, 0, 0.6);
+  padding: 10px 14px;
   backdrop-filter: blur(4px);
 }
 
 .professorCard {
-  max-width: 380px;
+  max-width: 400px;
   width: 100%;
-  border-color: #FFCC00;
-  background: rgba(255, 204, 0, 0.08);
+  border-color: #d4a017;
+  background: rgba(35, 28, 12, 0.88);
+  box-shadow:
+    inset 2px 2px 0 #ffd700,
+    inset -2px -2px 0 #4a3407,
+    0 4px 16px rgba(255, 204, 0, 0.25);
 }
 
-.personAvatar {
-  font-size: 32px;
-  width: 44px;
-  height: 44px;
+/* ── Minecraft Pixelated Frame ────────────────────────── */
+.pixelFrame {
+  width: 54px;
+  height: 54px;
+  padding: 3px;
+  background: #4a2711; /* Minecraft oak wood frame */
+  border: 3px solid #1a0e06;
+  box-shadow:
+    inset 2px 2px 0 #7a4622,
+    inset -2px -2px 0 #2e1407,
+    0 3px 6px rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #252525;
-  border: 1px solid #555;
   flex-shrink: 0;
+}
+
+.profFrame {
+  background: #8b6d1b; /* Golden frame for professor */
+  border-color: #2e2205;
+  box-shadow:
+    inset 2px 2px 0 #f0c342,
+    inset -2px -2px 0 #4a3507,
+    0 3px 10px rgba(255, 204, 0, 0.4);
+}
+
+.personImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: 1px solid #111111;
+  image-rendering: pixelated;
 }
 
 .personInfo {

@@ -196,10 +196,26 @@
   gap: 4px;
 }
 
+.footerBrand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.collegeLogoSmall {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  background: #ffffff;
+  border: 1px solid #444;
+  padding: 1px;
+  border-radius: 2px;
+}
+
 .footerText {
   font-family: 'VT323', monospace;
   font-size: 16px;
-  color: #666;
+  color: #888;
   letter-spacing: 0.5px;
 }
 

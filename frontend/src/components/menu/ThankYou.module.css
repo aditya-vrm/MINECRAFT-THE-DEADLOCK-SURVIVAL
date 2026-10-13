@@ -151,25 +151,78 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,133,161,0.35);
+  gap: 8px;
+  background: rgba(20, 20, 20, 0.85);
+  border: 2px solid #553344;
+  box-shadow:
+    inset 2px 2px 0 #774455,
+    inset -2px -2px 0 #22111a,
+    0 4px 10px rgba(0, 0, 0, 0.6);
   padding: 12px 14px;
 }
 
 .professorMember {
   display: flex;
   align-items: center;
-  gap: 14px;
-  background: rgba(255, 133, 161, 0.12);
-  border: 1px solid #FF85A1;
+  gap: 16px;
+  background: rgba(35, 28, 15, 0.9);
+  border: 2px solid #d4a017;
+  box-shadow:
+    inset 2px 2px 0 #ffd700,
+    inset -2px -2px 0 #4a3407,
+    0 4px 16px rgba(255, 204, 0, 0.3);
   padding: 12px 24px;
-  max-width: 420px;
+  max-width: 440px;
   width: 100%;
   justify-content: center;
 }
 
-.memberEmoji { font-size: 28px; }
+/* ── Minecraft Pixelated Frame ────────────────────────── */
+.pixelFrame {
+  width: 58px;
+  height: 58px;
+  padding: 3px;
+  background: #4a2711; /* Minecraft oak wood frame */
+  border: 3px solid #1a0e06;
+  box-shadow:
+    inset 2px 2px 0 #7a4622,
+    inset -2px -2px 0 #2e1407,
+    0 3px 8px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profFrame {
+  background: #8b6d1b; /* Golden frame for professor */
+  border-color: #2e2205;
+  box-shadow:
+    inset 2px 2px 0 #f0c342,
+    inset -2px -2px 0 #4a3507,
+    0 3px 12px rgba(255, 204, 0, 0.4);
+}
+
+.personImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: 1px solid #111111;
+  image-rendering: pixelated;
+}
+
+.collegeLogoInline {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  background: #ffffff;
+  border: 1px solid #444;
+  padding: 1px;
+  vertical-align: middle;
+  margin-right: 8px;
+  border-radius: 2px;
+}
 
 .memberName {
   font-family: 'Press Start 2P', monospace;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { playClickSound } from '../../utils/matrixUtils';
 import styles from './MainMenu.module.css';
+import sbuLogo from '../../assets/sbu_logo.jpeg';
 
 /**
  * The Hub — Main Menu
@@ -159,7 +160,10 @@ export default function MainMenu({ onStoryMode, onSurvivalMode, onThankYou }) {
 
         {/* Footer */}
         <div className={styles.footer}>
-          <p className={styles.footerText}>Sarala Birla University — BCA Program</p>
+          <div className={styles.footerBrand}>
+            <img src={sbuLogo} alt="SBU Logo" className={styles.collegeLogoSmall} />
+            <span className={styles.footerText}>Sarala Birla University — BCA Program</span>
+          </div>
           <p className={styles.footerText}>Department of Computer Science • 2026</p>
         </div>
       </div>

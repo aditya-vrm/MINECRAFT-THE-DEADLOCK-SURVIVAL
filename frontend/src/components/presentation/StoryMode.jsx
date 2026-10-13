@@ -2,6 +2,13 @@ import { useState, useCallback } from 'react';
 import { playClickSound } from '../../utils/matrixUtils';
 import styles from './StoryMode.module.css';
 
+// Team and College Assets
+import adityaPfp from '../../assets/aditya-pfp.png';
+import anishPfp from '../../assets/anish-pfp.jpeg';
+import vishalPfp from '../../assets/vishal-pfp.jpeg';
+import prakashPfp from '../../assets/prakash-pfp.jpeg';
+import sbuLogo from '../../assets/sbu_logo.jpeg';
+
 const SLIDES = [
   {
     id: 0,
@@ -41,11 +48,13 @@ const SLIDES = [
   },
 ];
 
-/** Student Card */
-function StudentCard({ emoji, name, id }) {
+/** Student Card with Minecraft Pixelated Frame */
+function StudentCard({ img, name, id }) {
   return (
     <div className={styles.personCard}>
-      <div className={styles.personAvatar}>{emoji}</div>
+      <div className={styles.pixelFrame}>
+        <img src={img} alt={name} className={styles.personImg} />
+      </div>
       <div className={styles.personInfo}>
         <div className={styles.personName}>{name}</div>
         <div className={styles.personId}>SBU ID: {id}</div>
@@ -54,11 +63,13 @@ function StudentCard({ emoji, name, id }) {
   );
 }
 
-/** Professor Card */
-function ProfessorCard({ name }) {
+/** Professor Card with Minecraft Golden Pixelated Frame */
+function ProfessorCard({ img, name }) {
   return (
     <div className={`${styles.personCard} ${styles.professorCard}`}>
-      <div className={styles.personAvatar}>👨‍🏫</div>
+      <div className={`${styles.pixelFrame} ${styles.profFrame}`}>
+        <img src={img} alt={name} className={styles.personImg} />
+      </div>
       <div className={styles.personInfo}>
         <div className={styles.profName}>{name}</div>
       </div>
@@ -232,7 +243,10 @@ function SlideContent({ slideIdx }) {
     case 0:
       return (
         <div className={styles.slideInner}>
-          <div className={styles.uniTag}>🎓 Sarala Birla University — BCA Program</div>
+          <div className={styles.uniTag}>
+            <img src={sbuLogo} alt="SBU Logo" className={styles.collegeLogo} />
+            <span>Sarala Birla University — BCA Program</span>
+          </div>
           <h1 className={styles.slideTitle}>BANKER&apos;S ALGORITHM &amp; DEADLOCK</h1>
           <p className={styles.slideSubtitle}>
             Resource Allocation &amp; Deadlock Avoidance in Operating Systems
@@ -241,14 +255,14 @@ function SlideContent({ slideIdx }) {
           <div className={styles.teamSection}>
             {/* Students in one row */}
             <div className={styles.studentsRow}>
-              <StudentCard emoji="🧑‍💻" name="Aditya Verma" id="SBU2500852" />
-              <StudentCard emoji="👨‍💻" name="Anish Deep Kerketta" id="SBU2500871" />
-              <StudentCard emoji="🧑‍💻" name="Vishal Kumar" id="SBU2500915" />
+              <StudentCard img={adityaPfp} name="Aditya Verma" id="SBU2500852" />
+              <StudentCard img={anishPfp} name="Anish Deep Kerketta" id="SBU2500871" />
+              <StudentCard img={vishalPfp} name="Vishal Kumar" id="SBU2500915" />
             </div>
 
             {/* Professor in another row */}
             <div className={styles.professorRow}>
-              <ProfessorCard name="DR. Prakash Kumar" />
+              <ProfessorCard img={prakashPfp} name="DR. Prakash Kumar" />
             </div>
           </div>
 
