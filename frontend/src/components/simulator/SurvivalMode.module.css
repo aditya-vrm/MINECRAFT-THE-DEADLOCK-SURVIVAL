@@ -1,0 +1,646 @@
+/* SurvivalMode.module.css */
+
+.survivalMode {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.craftingBg {
+  position: absolute;
+  inset: 0;
+  background-color: #1a1a1a;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.15) 0px,
+      rgba(0,0,0,0.15) 1px,
+      transparent 1px,
+      transparent 32px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0.15) 0px,
+      rgba(0,0,0,0.15) 1px,
+      transparent 1px,
+      transparent 32px
+    );
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.gameUI {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── HUD bar ─────────────────────────────────────── */
+.hud {
+  height: 52px;
+  background: rgba(0, 0, 0, 0.9);
+  border-bottom: 2px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.hudLeft { display: flex; align-items: center; }
+.hudRight { display: flex; align-items: center; }
+
+.hudTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: white;
+}
+
+.hudIcon { font-size: 20px; }
+
+.hudSub {
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  color: #4ADCDE;
+}
+
+.statusBadge {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  padding: 4px 10px;
+  border: 1px solid;
+}
+.statusIdle { color: #888; border-color: #555; background: rgba(0,0,0,0.3); }
+.statusSafe { color: #17DD62; border-color: #17DD62; background: rgba(23,221,98,0.1); animation: glowSafe 2s ease-in-out infinite; }
+.statusUnsafe { color: #E74040; border-color: #E74040; background: rgba(231,64,64,0.1); animation: glowUnsafe 2s ease-in-out infinite; }
+
+@keyframes glowSafe {
+  0%, 100% { box-shadow: 0 0 4px rgba(23,221,98,0.3); }
+  50% { box-shadow: 0 0 16px rgba(23,221,98,0.7); }
+}
+@keyframes glowUnsafe {
+  0%, 100% { box-shadow: 0 0 4px rgba(231,64,64,0.3); }
+  50% { box-shadow: 0 0 16px rgba(231,64,64,0.7); }
+}
+
+/* ── Main layout ─────────────────────────────────── */
+.mainLayout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  gap: 0;
+}
+
+/* ── Sidebar ─────────────────────────────────────── */
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: rgba(0,0,0,0.7);
+  border-right: 2px solid #333;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid #444;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panelTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #FFCC00;
+  border-bottom: 1px solid #333;
+  padding-bottom: 6px;
+}
+
+/* Config */
+.configRow {
+  display: flex;
+  gap: 10px;
+}
+.configItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.configInput {
+  background: #000;
+  border: 1px solid #555;
+  color: white;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  padding: 4px 8px;
+  text-align: center;
+  width: 100%;
+  outline: none;
+}
+.configInput:focus { border-color: #4ADCDE; }
+
+/* Total resources */
+.totalResRow { display: flex; flex-direction: column; gap: 4px; }
+.totalInputs { display: flex; flex-direction: column; gap: 4px; }
+.totalField {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.resNameInput { flex: 1; }
+.nameInput {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #444;
+  color: #AAA;
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  padding: 2px 4px;
+}
+.nameInput:focus { border-bottom-color: #4ADCDE; }
+.totalInput {
+  width: 50px;
+  background: #000;
+  border: 1px solid #555;
+  color: #FFCC00;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  text-align: center;
+  padding: 3px;
+  outline: none;
+}
+.totalInput:focus { border-color: #FFCC00; }
+
+/* Available chips */
+.availRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.availChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.availChip {
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  padding: 2px 6px;
+  border: 1px solid;
+}
+.availPos { color: #17DD62; border-color: #17DD62; background: rgba(23,221,98,0.1); }
+.availZero { color: #FFCC00; border-color: #FFCC00; background: rgba(255,204,0,0.1); }
+.availNeg { color: #E74040; border-color: #E74040; background: rgba(231,64,64,0.1); }
+
+/* Scenarios */
+.scenarioList { display: flex; flex-direction: column; gap: 6px; }
+.scenarioBtn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #333;
+  color: white;
+  cursor: pointer;
+  padding: 8px 10px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: background 0.1s, border-color 0.1s;
+}
+.scenarioBtn:hover {
+  background: rgba(74,220,222,0.08);
+  border-color: #4ADCDE;
+}
+.scenarioName {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #FFCC00;
+}
+.scenarioDesc {
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  color: #888;
+  line-height: 1.3;
+}
+
+/* Action buttons */
+.actionBtns { display: flex; flex-direction: column; gap: 8px; }
+.fullBtn { width: 100% !important; min-width: unset !important; font-size: 8px !important; }
+
+/* ── Center ──────────────────────────────────────── */
+.center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Tab bar */
+.tabBar {
+  display: flex;
+  background: rgba(0,0,0,0.8);
+  border-bottom: 2px solid #333;
+  flex-shrink: 0;
+}
+.tab {
+  flex: 1;
+  padding: 12px 8px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #333;
+  color: #888;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.tab:hover { background: rgba(255,255,255,0.05); color: white; }
+.tabActive {
+  background: rgba(74,220,222,0.1) !important;
+  color: #4ADCDE !important;
+  border-bottom: 2px solid #4ADCDE;
+}
+
+/* Tab content */
+.tabContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* ── Error box ───────────────────────────────────── */
+.errorBox {
+  background: rgba(231,64,64,0.12);
+  border: 1px solid #E74040;
+  color: #E74040;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+/* ── Matrices grid ───────────────────────────────── */
+.matricesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.matrixPanel {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid #333;
+}
+
+.matrixHeader {
+  padding: 8px 12px;
+  border-bottom: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.matrixName {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+}
+.matrixHint {
+  font-family: 'VT323', monospace;
+  font-size: 15px;
+  color: #666;
+}
+
+.matTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.matTh {
+  background: #222;
+  color: #888;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  padding: 6px 8px;
+  border: 1px solid #333;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+}
+.matTd {
+  border: 1px solid #333;
+  background: #111;
+  text-align: center;
+  padding: 2px;
+}
+.matTdReadonly {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  padding: 4px;
+}
+.matProcCell {
+  border: 1px solid #333;
+  background: #0A0A0A;
+  padding: 2px 6px;
+  min-width: 90px;
+}
+
+.matCell {
+  width: 52px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  text-align: center;
+  padding: 4px;
+  outline: none;
+}
+.matCell:focus {
+  background: rgba(74,220,222,0.15);
+}
+.matCellHL {
+  background: rgba(231,64,64,0.2) !important;
+  color: #E74040;
+}
+
+.procNameInput {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #333;
+  color: #FFCC00;
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  padding: 2px;
+}
+.procNameInput:focus { border-bottom-color: #FFCC00; }
+
+/* ── Request panel ───────────────────────────────── */
+.requestPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+}
+.sectionIcon { font-size: 20px; }
+.sectionTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #4ADCDE;
+}
+
+.requestForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid #333;
+  padding: 16px;
+}
+
+.requestField { display: flex; flex-direction: column; gap: 4px; }
+
+.mcSelect {
+  background: #000;
+  border: 1px solid #555;
+  color: white;
+  font-family: 'VT323', monospace;
+  font-size: 19px;
+  padding: 6px 8px;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+}
+.mcSelect:focus { border-color: #4ADCDE; }
+
+.requestFields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.reqResField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 80px;
+}
+.reqInput {
+  width: 80px;
+  background: #000;
+  border: 1px solid #555;
+  color: white;
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  text-align: center;
+  padding: 6px;
+  outline: none;
+}
+.reqInput:focus { border-color: #4ADCDE; }
+
+.requestBtn { align-self: flex-start; }
+
+.requestResult {
+  border: 1px solid;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.reqSafe { color: #17DD62; border-color: #17DD62; background: rgba(23,221,98,0.08); }
+.reqUnsafe { color: #E74040; border-color: #E74040; background: rgba(231,64,64,0.08); }
+
+.requestVerdict {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+}
+.requestReason {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.reqSeq {
+  font-family: 'VT323', monospace;
+  font-size: 17px;
+  color: #AAA;
+}
+
+/* ── Results panel ───────────────────────────────── */
+.noResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 300px;
+}
+.noResultIcon { font-size: 48px; }
+.noResultText {
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  color: #666;
+  text-align: center;
+}
+
+.resultsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.verdict {
+  border: 2px solid;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+.verdictSafe { color: #17DD62; border-color: #17DD62; background: rgba(23,221,98,0.08); }
+.verdictUnsafe { color: #E74040; border-color: #E74040; background: rgba(231,64,64,0.08); }
+.verdictIcon { font-size: 36px; }
+.verdictTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+}
+.verdictSub {
+  font-family: 'VT323', monospace;
+  font-size: 19px;
+  color: #DDD;
+  line-height: 1.5;
+}
+
+/* Step controls */
+.stepControls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.stepToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: #AAA;
+  cursor: pointer;
+}
+.stepToggle input { cursor: pointer; }
+.stepNav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stepCounter {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #888;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Step cards */
+.stepsList { display: flex; flex-direction: column; gap: 6px; }
+.stepCard {
+  background: #111;
+  border-left: 3px solid #4ADCDE;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: revealStep 0.25s ease forwards;
+  opacity: 0;
+}
+@keyframes revealStep {
+  to { opacity: 1; }
+}
+.stepBadge {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #4ADCDE;
+}
+.stepProcess {
+  font-family: 'VT323', monospace;
+  font-size: 19px;
+  color: #FFCC00;
+}
+.stepDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: 'VT323', monospace;
+  font-size: 17px;
+  color: #AAA;
+}
+.stepAfter { color: #17DD62; }
+
+/* Safe sequence visual */
+.seqVisual {
+  background: rgba(23,221,98,0.05);
+  border: 1px solid #17DD62;
+  padding: 14px 16px;
+}
+.seqChips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+.seqItem {
+  display: flex;
+  align-items: center;
+}
+.seqChip {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: #17DD62;
+  background: rgba(23,221,98,0.1);
+  border: 1px solid #17DD62;
+  padding: 4px 10px;
+}
+.seqArrow {
+  font-size: 20px;
+  color: #555;
+  padding: 0 4px;
+}
+
+.detectionNote {
+  background: rgba(255,153,68,0.08);
+  border: 1px solid #FF9944;
+  color: #FF9944;
+  font-family: 'VT323', monospace;
+  font-size: 17px;
+  padding: 10px 14px;
+  line-height: 1.5;
+}

@@ -1,0 +1,208 @@
+/* ThankYou.module.css */
+
+.screen {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  background-image: url('/minecraft_cherry.jpg');
+  background-size: cover;
+  background-position: center;
+  animation: gentlePan 20s ease-in-out infinite alternate;
+}
+
+@keyframes gentlePan {
+  0% { transform: scale(1.06) translate(-1%, -1%); }
+  100% { transform: scale(1.06) translate(1%, 1%); }
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 180, 200, 0.3) 0%,
+    rgba(0, 0, 0, 0.55) 60%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+
+/* ── Petals ──────────────────────────────────────── */
+.petal {
+  position: absolute;
+  top: -20px;
+  background: linear-gradient(135deg, #FFB7C5, #FF85A1);
+  border-radius: 50% 0 50% 0;
+  pointer-events: none;
+  animation: petalFall linear infinite;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(var(--drift, 40px)) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* ── Content ─────────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+  padding: 20px;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Thanks box ──────────────────────────────────── */
+.thanksBox {
+  background: rgba(0, 0, 0, 0.78);
+  border: 2px solid #FF85A1;
+  box-shadow: inset 1px 1px 0 #FF85A144, 0 8px 40px rgba(0,0,0,0.8), 0 0 60px rgba(255,133,161,0.2);
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 760px;
+  width: 100%;
+}
+
+.thankYouLabel {
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  color: #FFB7C5;
+  letter-spacing: 4px;
+  animation: petalGlow 2s ease-in-out infinite;
+}
+@keyframes petalGlow {
+  0%, 100% { text-shadow: 0 0 8px rgba(255,133,161,0.4); }
+  50% { text-shadow: 0 0 24px rgba(255,133,161,0.9); }
+}
+
+.bigTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(28px, 6vw, 60px);
+  color: white;
+  text-shadow:
+    4px 4px 0 #4A1530,
+    0 0 40px rgba(255,133,161,0.4);
+  letter-spacing: 6px;
+  animation: titleFloat 3s ease-in-out infinite;
+}
+@keyframes titleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.subtitle {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: #CCAAAA;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Team */
+.teamRow {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,133,161,0.3);
+  padding: 12px 16px;
+  min-width: 110px;
+}
+.memberEmoji { font-size: 32px; }
+.memberName {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #FFB7C5;
+  text-align: center;
+}
+.memberRole {
+  font-family: 'VT323', monospace;
+  font-size: 15px;
+  color: #888;
+}
+
+/* Credits */
+.credits {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid #333;
+  padding: 12px 16px;
+}
+.creditLine {
+  display: flex;
+  gap: 12px;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+}
+.creditKey {
+  color: #FFB7C5;
+  min-width: 100px;
+  font-weight: bold;
+}
+.creditVal { color: #CCCCCC; }
+
+/* Quote */
+.quote {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: #AAAAAA;
+  font-style: italic;
+  text-align: center;
+  border-left: 3px solid #FF85A1;
+  padding-left: 14px;
+  line-height: 1.6;
+}
+.quote cite {
+  display: block;
+  margin-top: 6px;
+  color: #FFB7C5;
+  font-style: normal;
+  font-size: 16px;
+}
+
+/* Badges */
+.badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 14px;
+}
