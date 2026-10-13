@@ -86,52 +86,82 @@
   color: #AAAAAA;
 }
 
-.teamGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+.teamSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   width: 100%;
-  max-width: 600px;
+  max-width: 840px;
+}
+
+.studentsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: 100%;
+}
+
+.professorRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .personCard {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid #444;
-  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #555;
+  padding: 12px 14px;
+  backdrop-filter: blur(4px);
+}
+
+.professorCard {
+  max-width: 380px;
+  width: 100%;
+  border-color: #FFCC00;
+  background: rgba(255, 204, 0, 0.08);
 }
 
 .personAvatar {
-  font-size: 36px;
-  width: 48px;
-  height: 48px;
+  font-size: 32px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #333;
+  background: #252525;
   border: 1px solid #555;
+  flex-shrink: 0;
 }
 
-.personInfo { text-align: left; }
+.personInfo {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 
 .personName {
   font-family: 'Press Start 2P', monospace;
-  font-size: 8px;
+  font-size: 8.5px;
   color: #FFCC00;
+  line-height: 1.4;
 }
 
-.personRole {
+.personId {
   font-family: 'VT323', monospace;
   font-size: 17px;
-  color: #AAAAAA;
+  color: #4ADCDE;
+  letter-spacing: 0.5px;
 }
 
-.personSub {
-  font-family: 'VT323', monospace;
-  font-size: 15px;
-  color: #666;
+.profName {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #FFFFFF;
+  line-height: 1.4;
 }
 
 .subjectBadge {

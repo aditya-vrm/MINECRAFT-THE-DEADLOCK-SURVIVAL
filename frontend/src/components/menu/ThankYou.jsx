@@ -61,24 +61,38 @@ export default function ThankYou({ onBack }) {
             From the Deadlock Survivors of Sarala Birla University
           </p>
 
-          {/* Team */}
-          <div className={styles.teamRow}>
-            {[
-              { emoji: '🧑‍💻', name: 'Aditya Verma', role: 'Lead Dev' },
-              { emoji: '👩‍💻', name: 'Student 2', role: 'Co-Dev' },
-              { emoji: '🧑‍🎓', name: 'Student 3', role: 'Research' },
-              { emoji: '👨‍🏫', name: 'Prof. Guide', role: 'Mentor' },
-            ].map((m) => (
-              <div key={m.name} className={styles.member}>
-                <div className={styles.memberEmoji}>{m.emoji}</div>
-                <div className={styles.memberName}>{m.name}</div>
-                <div className={styles.memberRole}>{m.role}</div>
+          {/* Team Layout: Students in Row 1, Professor in Row 2 */}
+          <div className={styles.teamSection}>
+            {/* Students in one row */}
+            <div className={styles.studentsRow}>
+              {[
+                { emoji: '🧑‍💻', name: 'Aditya Verma', id: 'SBU2500852' },
+                { emoji: '👨‍💻', name: 'Anish Deep Kerketta', id: 'SBU2500871' },
+                { emoji: '🧑‍💻', name: 'Vishal Kumar', id: 'SBU2500915' },
+              ].map((m) => (
+                <div key={m.name} className={styles.member}>
+                  <div className={styles.memberEmoji}>{m.emoji}</div>
+                  <div className={styles.memberName}>{m.name}</div>
+                  <div className={styles.memberId}>SBU ID: {m.id}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Professor in another row */}
+            <div className={styles.professorRow}>
+              <div className={styles.professorMember}>
+                <div className={styles.memberEmoji}>👨‍🏫</div>
+                <div className={styles.profName}>DR. Prakash Kumar</div>
               </div>
-            ))}
+            </div>
           </div>
 
           {/* Credits */}
           <div className={styles.credits}>
+            <div className={styles.creditLine}>
+              <span className={styles.creditKey}>Institution:</span>
+              <span className={styles.creditVal}>Sarala Birla University — Ranchi</span>
+            </div>
             <div className={styles.creditLine}>
               <span className={styles.creditKey}>Course:</span>
               <span className={styles.creditVal}>Operating Systems — BCA Semester V</span>
@@ -88,12 +102,8 @@ export default function ThankYou({ onBack }) {
               <span className={styles.creditVal}>Deadlock Avoidance — Banker&apos;s Algorithm</span>
             </div>
             <div className={styles.creditLine}>
-              <span className={styles.creditKey}>Tech Stack:</span>
-              <span className={styles.creditVal}>React + Node.js + Express</span>
-            </div>
-            <div className={styles.creditLine}>
-              <span className={styles.creditKey}>Inspired by:</span>
-              <span className={styles.creditVal}>Edsger W. Dijkstra (1965) &amp; Minecraft 🎮</span>
+              <span className={styles.creditKey}>Implementation:</span>
+              <span className={styles.creditVal}>Full-Stack Interactive Simulation &amp; PWA</span>
             </div>
           </div>
 
