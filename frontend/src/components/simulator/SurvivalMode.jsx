@@ -14,8 +14,8 @@ const DEFAULT_ALLOC = [
   [0, 1, 0], [2, 0, 0], [3, 0, 2], [2, 1, 1], [0, 0, 2],
 ];
 const DEFAULT_TOTAL = [10, 5, 7];
-const DEFAULT_PNAMES = ['Steve', 'Alex', 'Creeper', 'Enderman', 'Villager'];
-const DEFAULT_RNAMES = ['💎 Diamonds', '🪨 Iron', '🪵 Wood'];
+const DEFAULT_PNAMES = ['Team Alpha (P0)', 'Team Beta (P1)', 'Team Gamma (P2)', 'Team Delta (P3)', 'Team Omega (P4)'];
+const DEFAULT_RNAMES = ['💻 Lab PCs (A)', '📽️ Projectors (B)', '📚 Ref Kits (C)'];
 
 /* ─── Matrix input cell ───────────────────────────── */
 function MatrixCell({ value, onChange, highlight }) {
@@ -401,9 +401,9 @@ export default function SurvivalMode({ onBack }) {
             </button>
           </div>
           <div className={styles.hudTitle}>
-            <span className={styles.hudIcon}>⚔️</span>
-            <span>DeadlockGuard Simulator</span>
-            <span className={styles.hudSub}>Banker&apos;s Algorithm</span>
+            <span className={styles.hudIcon}>💻</span>
+            <span>Banker&apos;s Algorithm Simulator</span>
+            <span className={styles.hudSub}>OS Resource Allocation Lab</span>
           </div>
           <div className={styles.hudRight}>
             <div className={`${styles.statusBadge} ${isSafe ? styles.statusSafe : result ? styles.statusUnsafe : styles.statusIdle}`}>
