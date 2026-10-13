@@ -78,6 +78,33 @@
   transform: translateY(0);
 }
 
+.topUniHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #FFCC00;
+  box-shadow: inset 1px 1px 0 #FFEE88, inset -1px -1px 0 #997700, 0 4px 12px rgba(0, 0, 0, 0.6);
+  padding: 5px 16px;
+  border-radius: 2px;
+}
+
+.topCollegeLogo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  background: #ffffff;
+  border: 1px solid #333;
+  padding: 1px;
+}
+
+.topUniText {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(8px, 1.4vw, 11px);
+  color: #FFCC00;
+  letter-spacing: 1.5px;
+}
+
 .logoMC {
   font-family: 'Press Start 2P', monospace;
   font-size: clamp(20px, 4vw, 44px);

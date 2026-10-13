@@ -3,19 +3,27 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-// Register PWA Service Worker
-if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').then(
-      (reg) => console.log('✅ ServiceWorker registered:', reg.scope),
-      (err) => console.warn('❌ ServiceWorker registration failed:', err)
-    );
-  });
-} else if ('serviceWorker' in navigator) {
-  // Also register in dev mode if supported
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
-  });
+// In development or on reload, ensure stale service worker caches are cleared
+if ('serviceWorker' in navigator) {
+  if (import.meta.env.DEV) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (const reg of registrations) {
+        reg.unregister();
+      }
+    });
+    if ('caches' in window) {
+      caches.keys().then((names) => {
+        for (const name of names) {
+          caches.delete(name);
+        }
+      });
+    }
+  } else {
+    // Only register in production build
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    });
+  }
 }
 
 createRoot(document.getElementById('root')).render(

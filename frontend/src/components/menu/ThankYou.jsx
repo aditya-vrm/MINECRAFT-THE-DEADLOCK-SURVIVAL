@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { playClickSound } from '../../utils/matrixUtils';
 import styles from './ThankYou.module.css';
 
-// Team and College Assets
-import adityaPfp from '../../assets/aditya-pfp.png';
-import anishPfp from '../../assets/anish-pfp.jpeg';
-import vishalPfp from '../../assets/vishal-pfp.jpeg';
-import prakashPfp from '../../assets/prakash-pfp.jpeg';
-import sbuLogo from '../../assets/sbu_logo.jpeg';
+// Team and College Assets (Served from public directory)
+const ADITYA_PFP = '/aditya-pfp.png';
+const ANISH_PFP = '/anish-pfp.jpeg';
+const VISHAL_PFP = '/vishal-pfp.jpeg';
+const PRAKASH_PFP = '/prakash-pfp.jpeg';
+const SBU_LOGO = '/sbu_logo.jpeg';
 
 /** Generate random cherry petals */
 function usePetals(count = 40) {
@@ -65,7 +65,7 @@ export default function ThankYou({ onBack }) {
           <div className={styles.thankYouLabel}>🌸 THANK YOU 🌸</div>
           <h1 className={styles.bigTitle}>ARIGATO!</h1>
           <p className={styles.subtitle}>
-            <img src={sbuLogo} alt="SBU" className={styles.collegeLogoInline} />
+            <img src={SBU_LOGO} alt="SBU" className={styles.collegeLogoInline} />
             Sarala Birla University — Department of Computer Science
           </p>
 
@@ -74,13 +74,13 @@ export default function ThankYou({ onBack }) {
             {/* Students in one row with Minecraft Pixelated Frames */}
             <div className={styles.studentsRow}>
               {[
-                { img: adityaPfp, name: 'Aditya Verma', id: 'SBU2500852' },
-                { img: anishPfp, name: 'Anish Deep Kerketta', id: 'SBU2500871' },
-                { img: vishalPfp, name: 'Vishal Kumar', id: 'SBU2500915' },
+                { img: ADITYA_PFP, name: 'Aditya Verma', id: 'SBU2500852' },
+                { img: ANISH_PFP, name: 'Anish Deep Kerketta', id: 'SBU2500871' },
+                { img: VISHAL_PFP, name: 'Vishal Kumar', id: 'SBU2500915' },
               ].map((m) => (
                 <div key={m.name} className={styles.member}>
                   <div className={styles.pixelFrame}>
-                    <img src={m.img} alt={m.name} className={styles.personImg} />
+                    <img src={m.img} alt={m.name} className={styles.personImg} loading="eager" />
                   </div>
                   <div className={styles.memberName}>{m.name}</div>
                   <div className={styles.memberId}>SBU ID: {m.id}</div>
@@ -92,7 +92,7 @@ export default function ThankYou({ onBack }) {
             <div className={styles.professorRow}>
               <div className={styles.professorMember}>
                 <div className={`${styles.pixelFrame} ${styles.profFrame}`}>
-                  <img src={prakashPfp} alt="DR. Prakash Kumar" className={styles.personImg} />
+                  <img src={PRAKASH_PFP} alt="DR. Prakash Kumar" className={styles.personImg} loading="eager" />
                 </div>
                 <div className={styles.profName}>DR. Prakash Kumar</div>
               </div>
@@ -104,7 +104,7 @@ export default function ThankYou({ onBack }) {
             <div className={styles.creditLine}>
               <span className={styles.creditKey}>Institution:</span>
               <span className={styles.creditVal}>
-                <img src={sbuLogo} alt="SBU" className={styles.collegeLogoInline} />
+                <img src={SBU_LOGO} alt="SBU" className={styles.collegeLogoInline} />
                 Sarala Birla University — Ranchi
               </span>
             </div>

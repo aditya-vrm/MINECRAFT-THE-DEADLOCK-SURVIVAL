@@ -2,12 +2,12 @@ import { useState, useCallback } from 'react';
 import { playClickSound } from '../../utils/matrixUtils';
 import styles from './StoryMode.module.css';
 
-// Team and College Assets
-import adityaPfp from '../../assets/aditya-pfp.png';
-import anishPfp from '../../assets/anish-pfp.jpeg';
-import vishalPfp from '../../assets/vishal-pfp.jpeg';
-import prakashPfp from '../../assets/prakash-pfp.jpeg';
-import sbuLogo from '../../assets/sbu_logo.jpeg';
+// Team and College Assets (Served from public directory)
+const ADITYA_PFP = '/aditya-pfp.png';
+const ANISH_PFP = '/anish-pfp.jpeg';
+const VISHAL_PFP = '/vishal-pfp.jpeg';
+const PRAKASH_PFP = '/prakash-pfp.jpeg';
+const SBU_LOGO = '/sbu_logo.jpeg';
 
 const SLIDES = [
   {
@@ -53,7 +53,12 @@ function StudentCard({ img, name, id }) {
   return (
     <div className={styles.personCard}>
       <div className={styles.pixelFrame}>
-        <img src={img} alt={name} className={styles.personImg} />
+        <img
+          src={img}
+          alt={name}
+          className={styles.personImg}
+          loading="eager"
+        />
       </div>
       <div className={styles.personInfo}>
         <div className={styles.personName}>{name}</div>
@@ -68,7 +73,12 @@ function ProfessorCard({ img, name }) {
   return (
     <div className={`${styles.personCard} ${styles.professorCard}`}>
       <div className={`${styles.pixelFrame} ${styles.profFrame}`}>
-        <img src={img} alt={name} className={styles.personImg} />
+        <img
+          src={img}
+          alt={name}
+          className={styles.personImg}
+          loading="eager"
+        />
       </div>
       <div className={styles.personInfo}>
         <div className={styles.profName}>{name}</div>
@@ -244,7 +254,7 @@ function SlideContent({ slideIdx }) {
       return (
         <div className={styles.slideInner}>
           <div className={styles.uniTag}>
-            <img src={sbuLogo} alt="SBU Logo" className={styles.collegeLogo} />
+            <img src={SBU_LOGO} alt="SBU Logo" className={styles.collegeLogo} />
             <span>Sarala Birla University — BCA Program</span>
           </div>
           <h1 className={styles.slideTitle}>BANKER&apos;S ALGORITHM &amp; DEADLOCK</h1>
@@ -255,14 +265,14 @@ function SlideContent({ slideIdx }) {
           <div className={styles.teamSection}>
             {/* Students in one row */}
             <div className={styles.studentsRow}>
-              <StudentCard img={adityaPfp} name="Aditya Verma" id="SBU2500852" />
-              <StudentCard img={anishPfp} name="Anish Deep Kerketta" id="SBU2500871" />
-              <StudentCard img={vishalPfp} name="Vishal Kumar" id="SBU2500915" />
+              <StudentCard img={ADITYA_PFP} name="Aditya Verma" id="SBU2500852" />
+              <StudentCard img={ANISH_PFP} name="Anish Deep Kerketta" id="SBU2500871" />
+              <StudentCard img={VISHAL_PFP} name="Vishal Kumar" id="SBU2500915" />
             </div>
 
             {/* Professor in another row */}
             <div className={styles.professorRow}>
-              <ProfessorCard img={prakashPfp} name="DR. Prakash Kumar" />
+              <ProfessorCard img={PRAKASH_PFP} name="DR. Prakash Kumar" />
             </div>
           </div>
 
