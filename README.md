@@ -73,7 +73,7 @@ npm run dev       # Starts at http://localhost:5173
 
 - **Institution**: Sarala Birla University, Ranchi
 - **Program**: Bachelor of Computer Applications (BCA)
-- **Course**: Operating Systems — Semester V
+- **Course**: Operating Systems — Semester III
 
 ---
 

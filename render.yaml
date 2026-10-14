@@ -1,0 +1,27 @@
+services:
+  # ── Backend Web Service (Node/Express API) ───────────
+  - type: web
+    name: bankers-algorithm-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node src/server.js
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: '*'
+
+  # ── Frontend Static Site (React + Vite PWA) ──────────
+  - type: web
+    name: bankers-algorithm-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    plan: free
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

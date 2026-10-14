@@ -76,7 +76,7 @@ export default function MainMenu({ onStoryMode, onSurvivalMode, onThankYou }) {
 
           {/* Subtitle detail */}
           <p className={styles.edition}>
-            Operating Systems • BCA V Semester
+            Operating Systems • BCA III Semester
           </p>
         </div>
 

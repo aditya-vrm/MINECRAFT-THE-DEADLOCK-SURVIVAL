@@ -110,7 +110,7 @@ export default function ThankYou({ onBack }) {
             </div>
             <div className={styles.creditLine}>
               <span className={styles.creditKey}>Course:</span>
-              <span className={styles.creditVal}>Operating Systems — BCA Semester V</span>
+              <span className={styles.creditVal}>Operating Systems — BCA Semester III</span>
             </div>
             <div className={styles.creditLine}>
               <span className={styles.creditKey}>Topic:</span>

@@ -276,7 +276,7 @@ function SlideContent({ slideIdx }) {
             </div>
           </div>
 
-          <div className={styles.subjectBadge}>Operating Systems Project • 2026</div>
+          <div className={styles.subjectBadge}>Operating Systems Project • Semester III • 2026</div>
         </div>
       );
 
