@@ -5,7 +5,17 @@
 
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_URL || '/api';
+let rawBase = import.meta.env.VITE_API_URL || '/api';
+if (rawBase && rawBase !== '/api') {
+  // Strip trailing slashes
+  rawBase = rawBase.replace(/\/+$/, '');
+  // If user passed root backend URL without /api, append /api
+  if (!rawBase.endsWith('/api')) {
+    rawBase += '/api';
+  }
+}
+
+const BASE_URL = rawBase;
 
 const api = axios.create({
   baseURL: BASE_URL,
